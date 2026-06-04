@@ -60,3 +60,10 @@ WHERE id_medico=1;
 
 DELETE FROM Pacientes
 WHERE id_paciente=2;
+
+SELECT * FROM Pacientes;
+
+SELECT * FROM Medicos;
+
+SELECT COUNT(*) AS TotalPacientes
+FROM Pacientes;
