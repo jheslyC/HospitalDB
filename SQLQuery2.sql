@@ -23,3 +23,12 @@ CREATE TABLE Medicos (
     salario DECIMAL(10,2) NOT NULL,
     id_especialidad INT NOT NULL
 );
+
+ALTER TABLE Pacientes ADD telefono VARCHAR(20);
+ALTER TABLE Pacientes ADD direccion VARCHAR(150);
+ALTER TABLE Pacientes ADD genero VARCHAR(15);
+ALTER TABLE Pacientes ADD tipo_sangre VARCHAR(5);
+ALTER TABLE Pacientes ADD fecha_nacimiento DATE;
+
+ALTER TABLE Medicos ADD experiencia INT;
+ALTER TABLE Medicos ADD turno VARCHAR(30);
