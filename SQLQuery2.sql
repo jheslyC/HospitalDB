@@ -29,6 +29,23 @@ ALTER TABLE Pacientes ADD direccion VARCHAR(150);
 ALTER TABLE Pacientes ADD genero VARCHAR(15);
 ALTER TABLE Pacientes ADD tipo_sangre VARCHAR(5);
 ALTER TABLE Pacientes ADD fecha_nacimiento DATE;
-
 ALTER TABLE Medicos ADD experiencia INT;
 ALTER TABLE Medicos ADD turno VARCHAR(30);
+
+INSERT INTO Especialidades(nombre)
+VALUES
+('Cardiología'),
+('Pediatría'),
+('Neurología'),
+('Dermatología'),
+('Medicina General');
+
+INSERT INTO Pacientes(nombre,apellido,correo)
+VALUES
+('Juan','Ramirez','juan@gmail.com'),
+('Maria','Lopez','maria@gmail.com');
+
+INSERT INTO Medicos(nombre,apellido,salario,id_especialidad)
+VALUES
+('Carlos','Ruiz',25000,1),
+('Ana','Lopez',22000,2);
