@@ -1,69 +1,75 @@
 CREATE DATABASE HospitalDB;
 GO
 
+SELECT name AS BaseDeDatos
+FROM sys.databases;
+GO
+
 USE HospitalDB;
 GO
 
 CREATE TABLE Especialidades (
-    id_especialidad INT IDENTITY(1,1) PRIMARY KEY,
-    nombre VARCHAR(80) NOT NULL
+    id_especialidad INT IDENTITY(1,1),
+    nombre VARCHAR(80),
+    descripcion VARCHAR(150)
 );
+GO
 
 CREATE TABLE Pacientes (
-    id_paciente INT IDENTITY(1,1) PRIMARY KEY,
-    nombre VARCHAR(80) NOT NULL,
-    apellido VARCHAR(80) NOT NULL,
-    correo VARCHAR(100) NOT NULL
+    id_paciente INT IDENTITY(1,1),
+    nombre VARCHAR(80),
+    apellido VARCHAR(80),
+    correo VARCHAR(100),
+    edad INT,
+    fecha_registro DATE DEFAULT GETDATE()
 );
+GO
 
 CREATE TABLE Medicos (
-    id_medico INT IDENTITY(1,1) PRIMARY KEY,
-    nombre VARCHAR(80) NOT NULL,
-    apellido VARCHAR(80) NOT NULL,
-    salario DECIMAL(10,2) NOT NULL,
-    id_especialidad INT NOT NULL
+    id_medico INT IDENTITY(1,1),
+    nombre VARCHAR(80),
+    apellido VARCHAR(80),
+    correo VARCHAR(100),
+    salario DECIMAL(10,2),
+    id_especialidad INT
 );
+GO
 
-ALTER TABLE Pacientes ADD telefono VARCHAR(20);
-ALTER TABLE Pacientes ADD direccion VARCHAR(150);
-ALTER TABLE Pacientes ADD genero VARCHAR(15);
-ALTER TABLE Pacientes ADD tipo_sangre VARCHAR(5);
-ALTER TABLE Pacientes ADD fecha_nacimiento DATE;
-ALTER TABLE Medicos ADD experiencia INT;
-ALTER TABLE Medicos ADD turno VARCHAR(30);
+CREATE TABLE Habitaciones (
+    id_habitacion INT IDENTITY(1,1),
+    numero VARCHAR(10),
+    tipo VARCHAR(50),
+    estado VARCHAR(20),
+    id_paciente INT NULL
+);
+GO
 
-INSERT INTO Especialidades(nombre)
-VALUES
-('Cardiología'),
-('Pediatría'),
-('Neurología'),
-('Dermatología'),
-('Medicina General');
+CREATE TABLE Citas (
+    id_cita INT IDENTITY(1,1),
+    id_paciente INT,
+    id_medico INT,
+    fecha_cita DATETIME,
+    motivo VARCHAR(150)
+);
+GO
 
-INSERT INTO Pacientes(nombre,apellido,correo)
-VALUES
-('Juan','Ramirez','juan@gmail.com'),
-('Maria','Lopez','maria@gmail.com');
+CREATE TABLE Tratamientos (
+    id_tratamiento INT IDENTITY(1,1),
+    id_paciente INT,
+    descripcion VARCHAR(200),
+    fecha_inicio DATE,
+    fecha_fin DATE NULL,
+    estado VARCHAR(20)
+);
+GO
 
-INSERT INTO Medicos(nombre,apellido,salario,id_especialidad)
-VALUES
-('Carlos','Ruiz',25000,1),
-('Ana','Lopez',22000,2);
-
-UPDATE Pacientes
-SET telefono='8888-9999'
-WHERE id_paciente=1;
-
-UPDATE Medicos
-SET experiencia=10
-WHERE id_medico=1;
-
-DELETE FROM Pacientes
-WHERE id_paciente=2;
-
-SELECT * FROM Pacientes;
-
-SELECT * FROM Medicos;
-
-SELECT COUNT(*) AS TotalPacientes
-FROM Pacientes;
+CREATE TABLE Medicamentos (
+    id_medicamento INT IDENTITY(1,1),
+    nombre VARCHAR(100),
+    laboratorio VARCHAR(100),
+    fecha_vencimiento DATE,
+    precio DECIMAL(10,2),
+    stock INT,
+    id_tratamiento INT NULL
+);
+GO
