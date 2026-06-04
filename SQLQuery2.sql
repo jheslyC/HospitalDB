@@ -49,3 +49,14 @@ INSERT INTO Medicos(nombre,apellido,salario,id_especialidad)
 VALUES
 ('Carlos','Ruiz',25000,1),
 ('Ana','Lopez',22000,2);
+
+UPDATE Pacientes
+SET telefono='8888-9999'
+WHERE id_paciente=1;
+
+UPDATE Medicos
+SET experiencia=10
+WHERE id_medico=1;
+
+DELETE FROM Pacientes
+WHERE id_paciente=2;
